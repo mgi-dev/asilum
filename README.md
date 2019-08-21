@@ -1,6 +1,6 @@
 ## Get started
 
-- `git clone https://github.com/maximeGirma/boilerplate-java-spring-hibernate.git myApp`
+- `git clone https://github.com/maximeGirma/asilum.git`
 - `cd myApp`
 - `docker-compose build`
 - `docker-compose up`
