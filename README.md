@@ -1,7 +1,7 @@
 ## Get started
 
-- `git clone https://github.com/maximeGirma/asilum.git`
-- `cd myApp`
+- `git clone https://github.com/maximeGirma/asilum.git asilum`
+- `cd asilum`
 - `docker-compose build`
 - `docker-compose up`
 
