@@ -1,4 +1,4 @@
-##Get started
+## Get started
 
 - `git clone https://github.com/maximeGirma/boilerplate-java-spring-hibernate.git myApp`
 - `cd myApp`
@@ -7,7 +7,7 @@
 
 The stack is pretty slow, get a coffee while building.
 
-##Troubleshooting
+## Troubleshooting
 
 On windows an error can occurs when running the container
 
