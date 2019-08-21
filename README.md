@@ -7,6 +7,17 @@
 
 The stack is pretty slow, get a coffee while building.
 
+## Customize the app
+
+If you want to change the db or the app name you can change it in .env file.
+
+
+You can also change password and user. 
+
+
+You need to delete the database folder and rebuild the stack to apply these changes.
+
+
 ## Troubleshooting
 
 On windows an error can occurs when running the container

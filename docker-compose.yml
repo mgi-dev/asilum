@@ -6,14 +6,19 @@ services:
     build:
       context: .
       dockerfile: services/app/Dockerfile
+      args:
+        APP_NAME: ${APP_NAME}
+        DB_NAME: ${DB_NAME}
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
     ports:
     - 8080:8080
     volumes:
-    - ./app:/usr/asilum
+    - ./app:/usr/${APP_NAME}
     networks:
     - local
   #    - traefik-net
-
+#    tty: true
 
   db:
     container_name: ${APP_NAME}-db
