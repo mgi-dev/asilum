@@ -2,6 +2,7 @@ package asilum.controllers;
 
 import asilum.exceptions.IncorrectUsernameOrPasswordException;
 import asilum.models.User;
+import asilum.models.users.Username;
 import asilum.repositories.UserRepository;
 import asilum.models.users.UsersCount;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,23 +24,23 @@ public class UserController extends BaseController {
         // @RequestParam means it is a parameter from the GET or POST request
 
         User n = new User();
-        n.setUsername(name);
-        n.setPassword(email);
-        userRepository.save(n);
+//        n.setUsername(name);
+//        n.setPassword(email);
+//        userRepository.save(n);
         return "Saved";
     }
 
     @GetMapping(path="/users")
-    public @ResponseBody User getUser(@RequestParam String name, @RequestParam String password) throws IncorrectUsernameOrPasswordException {
+    public @ResponseBody User getUser(Username username, @RequestParam String password) throws IncorrectUsernameOrPasswordException {
         // This returns a JSON or XML with the users
         System.out.println("ohhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-        System.out.println(name);
-        User user = userRepository.findByUsernameAndPassword(name, password);
+        System.out.println(username);
+        User user = userRepository.findByUsernameAndPassword(username, password);
         System.out.println(user);
         if (user == null){
             throw new IncorrectUsernameOrPasswordException();
         }
-        return userRepository.findByUsernameAndPassword(name, password);
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 
 

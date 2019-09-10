@@ -1,5 +1,7 @@
 package asilum.models;
 
+import asilum.models.users.Username;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +13,7 @@ public class User {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-    private String username;
+    private Username username;
 
     private String password;
 
@@ -23,11 +25,11 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
+    public Username getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(Username username) {
         this.username = username;
     }
 

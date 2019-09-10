@@ -1,17 +1,17 @@
 package asilum.models.users;
 
 public class Username {
-    private String value;
+    private String username;
 
-    public Username(String value) {
-        this.value = value;
-    }
+//    public Username(String value) {
+//        this.value = value;
+//    }
 
     public String getValue() {
-        return value;
+        return username;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setValue(String username) {
+        this.username = username;
     }
 }

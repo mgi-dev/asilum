@@ -26,5 +26,5 @@ RUN sed -i 's/APP_NAME/'$APP_NAME'/g' /application.properties
 
 RUN chmod +x /launcher.sh
 
-ENTRYPOINT ["sh", "/launcher.sh"]
+#ENTRYPOINT ["sh", "/launcher.sh"]
 #ENTRYPOINT ["./gradlew", "bootRun"]

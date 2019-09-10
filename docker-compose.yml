@@ -18,7 +18,7 @@ services:
     networks:
     - local
   #    - traefik-net
-#    tty: true
+    tty: true
 
   db:
     container_name: ${APP_NAME}-db
