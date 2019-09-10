@@ -29,7 +29,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
 
 
-    // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
+    // JPA Data (We are going to use repositories, Entities, Hibernate, etc...)
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     // Use MySQL Connector-J
