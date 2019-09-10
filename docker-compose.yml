@@ -12,7 +12,7 @@ services:
         DB_USER: ${DB_USER}
         DB_PASSWORD: ${DB_PASSWORD}
     ports:
-    - 8080:8080
+    - ${APP_PORT}:8080
     volumes:
     - ./app:/usr/${APP_NAME}
     networks:
