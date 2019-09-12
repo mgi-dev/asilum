@@ -1,4 +1,4 @@
 package asilum.exceptions;
 
-public class IncorrectUsernameOrPasswordException extends Exception{
+public class IncorrectUsernameOrPasswordException extends Exception {
 }

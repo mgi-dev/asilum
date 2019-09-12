@@ -1,21 +1,45 @@
 package asilum.models;
 
+import asilum.models.users.Password;
 import asilum.models.users.Username;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
+
+@Component
 @Entity // This tells Hibernate to make a table out of this class
+@Table(name="user",
+        uniqueConstraints = {@UniqueConstraint(columnNames={"username"})}
+)
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
+    @Embedded
+    @NotNull
+    @Valid
     private Username username;
 
-    private String password;
+    @Embedded
+    @NotNull
+    @Valid
+    private Password password;
+
+    public User() {}
+
+    public User(String username, String password) {
+        this.setUsername(username);
+        this.setPassword(password);
+    }
+
+    public User(Username username, Password password) {
+        this.setUsername(username);
+        this.setPassword(password);
+    }
 
     public Integer getId() {
         return id;
@@ -33,13 +57,22 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public void setUsername(String username) {
+        this.username = new Username(username);
     }
 
-    public void setPassword(String password) {
+    public Password getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(Password password) {
         this.password = password;
     }
-
-
+    public void setPassword(String password){
+        this.password = new Password(password);
+//        this.password.selfHash();
+    }
+    public void hashPassword(){
+        this.password.selfHash();
+    }
 }

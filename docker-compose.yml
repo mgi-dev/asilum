@@ -15,10 +15,12 @@ services:
     - ${APP_PORT}:8080
     volumes:
     - ./app:/usr/${APP_NAME}
+    depends_on:
+    - db
     networks:
     - local
   #    - traefik-net
-    tty: true
+#    tty: true
 
   db:
     container_name: ${APP_NAME}-db

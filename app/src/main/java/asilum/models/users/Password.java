@@ -1,17 +1,39 @@
 package asilum.models.users;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import javax.persistence.Embeddable;
+import javax.validation.constraints.Size;
+
+
+@Embeddable
 public class Password {
-    private String value;
+    @Size(min=8, max=60, message="Invalid length.")
+    private String password;
 
-    public Password(String value) {
-        this.value = value;
+    public Password(){}
+
+    public Password(String password){
+        this.setPassword(password);
     }
 
-    public String getValue() {
-        return value;
+    public String getPassword() {
+        return this.password;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void selfHash(){
+        this.password = passwordEncoder().encode(this.password);
+    }
+
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    public Boolean match(String password){
+        return passwordEncoder().matches(password, this.password);
     }
 }
