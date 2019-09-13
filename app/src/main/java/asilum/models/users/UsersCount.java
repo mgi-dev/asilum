@@ -2,7 +2,6 @@ package asilum.models.users;
 
 public class UsersCount {
 
-
     private Long value;
 
     public UsersCount(Long count) {

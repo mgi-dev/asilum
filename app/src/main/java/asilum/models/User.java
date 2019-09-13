@@ -3,14 +3,12 @@ package asilum.models;
 import asilum.models.users.Password;
 import asilum.models.users.Username;
 import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
-
-import javax.validation.constraints.NotNull;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @Component
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 @Table(name="user",
         uniqueConstraints = {@UniqueConstraint(columnNames={"username"})}
 )
@@ -42,7 +40,7 @@ public class User {
     }
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -68,9 +66,9 @@ public class User {
     public void setPassword(Password password) {
         this.password = password;
     }
+
     public void setPassword(String password){
         this.password = new Password(password);
-//        this.password.selfHash();
     }
     public void hashPassword(){
         this.password.selfHash();
