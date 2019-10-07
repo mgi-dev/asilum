@@ -1,5 +1,7 @@
 package asilum.models.user;
 
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.Embeddable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -13,9 +15,8 @@ public class Username {
     @Size(min=1, max=30, message="Invalid length.")
     private String username;
 
-    public Username(){
-        System.out.println("Je t'ai choppé petit enc****");
-    }
+    public Username(){};
+
 
     public Username(String username){
         this.setUsername(username);

@@ -2,11 +2,14 @@ package asilum.models.user;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.Embeddable;
 import javax.validation.constraints.Size;
 
 
 @Embeddable
+@Validated
 public class Password {
     @Size(min=8, max=60, message="Invalid length.")
     private String password;

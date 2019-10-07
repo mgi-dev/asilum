@@ -1,5 +1,6 @@
 package asilum.models.user;
 
+import asilum.models.database.ConstraintNames;
 import asilum.models.message.Message;
 import org.springframework.stereotype.Component;
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.Set;
 @Component
 @Entity
 @Table(name="user",
-        uniqueConstraints = {@UniqueConstraint(columnNames={"username"})}
+        uniqueConstraints = {@UniqueConstraint(name= ConstraintNames.UNIQUE_USERNAME_CONSTRAINT, columnNames={"username"})}
 )
 public class User {
     @Id

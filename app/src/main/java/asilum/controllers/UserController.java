@@ -26,15 +26,11 @@ public class UserController extends BaseController {
         return userRepository.save(user);
     }
 
-
     @GetMapping(path="/users")
     public @ResponseBody
-    UserDTO getUser(Username username, String password) throws UserNotFoundException {
-
+    UserDTO getUser(@Validated Username username, @Validated String password) throws UserNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-
         if (user.getPassword().match(password)){
-//            return user.mappingDTO();
             return new UserDTO(user);
         } else {
             throw new UserNotFoundException();

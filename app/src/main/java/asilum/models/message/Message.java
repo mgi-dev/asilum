@@ -27,7 +27,6 @@ public class Message {
     @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     @JoinColumn(name="sender_id", nullable = false)
     @Valid
-    @NonNull
     private User sender;
 
     public Message(@NotNull String text/*, @Validated @NotNull User sender*/) {

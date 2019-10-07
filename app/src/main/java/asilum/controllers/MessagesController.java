@@ -25,7 +25,7 @@ public class MessagesController extends BaseController {
     @PostMapping(path = "/messages")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
-    Message addMessage(@RequestBody @Validated Message message, Username username) throws UserNotFoundException {
+    Message addMessage(@Validated Message message, @Validated Username username) throws UserNotFoundException {
         System.out.println("ah. C'est nouveau ca!");
         System.out.println(username);
         System.out.println(username.getUsername());
