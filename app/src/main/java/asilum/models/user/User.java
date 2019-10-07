@@ -1,11 +1,11 @@
-package asilum.models;
+package asilum.models.user;
 
-import asilum.models.users.Password;
-import asilum.models.users.Username;
+import asilum.models.message.Message;
 import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Component
 @Entity
@@ -15,7 +15,11 @@ import javax.validation.constraints.NotNull;
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+
     private Integer id;
+
+    @OneToMany(mappedBy = "sender")
+    private Set<Message> messages;
 
     @Embedded
     @NotNull

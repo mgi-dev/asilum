@@ -37,7 +37,7 @@ public abstract class BaseController{
     @ResponseBody
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<String> handleExistingUserException(Exception ex, ServletWebRequest request) {
-        if (request.getRequest().getMethod().equals("POST") && request.getRequest().getRequestURI().equals("/users")){
+        if (request.getRequest().getMethod().equals("POST") && request.getRequest().getRequestURI().equals("/user")){
             return new ResponseEntity<>("User already exists.", HttpStatus.CONFLICT);
         } else {
             System.out.println(ex);

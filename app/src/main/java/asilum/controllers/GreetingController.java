@@ -2,7 +2,7 @@ package asilum.controllers;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import asilum.models.users.Greeting;
+import asilum.models.user.Greeting;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

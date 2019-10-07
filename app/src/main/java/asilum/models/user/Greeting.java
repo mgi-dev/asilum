@@ -1,4 +1,4 @@
-package asilum.models.users;
+package asilum.models.user;
 
 public class Greeting {
 

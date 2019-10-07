@@ -1,8 +1,7 @@
 package asilum.repositories;
 
-import asilum.models.User;
-import asilum.models.users.Password;
-import asilum.models.users.Username;
+import asilum.models.user.User;
+import asilum.models.user.Username;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package asilum.models.users;
+package asilum.models.user;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;

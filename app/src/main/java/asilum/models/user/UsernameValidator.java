@@ -1,4 +1,4 @@
-package asilum.models.users;
+package asilum.models.user;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
