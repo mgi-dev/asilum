@@ -15,9 +15,9 @@ public class MessageDTO {
     @Size(min=1, max=255, message="Invalid length.")
     private String text;
 
-    public MessageDTO(Integer senderId, Integer recepientId, String text) {
+    public MessageDTO(Integer senderId, Integer recipientId, String text) {
         this.senderId = senderId;
-        this.recipientId = recepientId;
+        this.recipientId = recipientId;
         this.text = text;
     }
 

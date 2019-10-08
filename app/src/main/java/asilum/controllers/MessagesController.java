@@ -1,12 +1,15 @@
 package asilum.controllers;
 
 import asilum.DTO.MessageDTO;
+import asilum.exceptions.InvalidParameterException;
 import asilum.exceptions.UserNotFoundException;
 import asilum.models.message.Message;
 import asilum.repositories.MessageRepository;
 import asilum.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -30,3 +33,4 @@ public class MessagesController extends BaseController {
         return new MessageDTO(messageRepository.save(message));
     }
 }
+

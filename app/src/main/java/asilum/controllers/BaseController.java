@@ -1,5 +1,6 @@
 package asilum.controllers;
 
+import asilum.exceptions.InvalidParameterException;
 import asilum.exceptions.UserNotFoundException;
 import asilum.locales.ErrorMessages;
 import asilum.models.database.ConstraintNames;
@@ -7,6 +8,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -43,18 +45,27 @@ public abstract class BaseController{
 //        System.out.println("===================================================================");
 //        System.out.println("===================================================================");
 //        System.out.println(e);
+//        System.out.println(e.toString());
 //        System.out.println(e.getMessage());
-//        DataIntegrityViolationException ex = (DataIntegrityViolationException)e;
-//        System.out.println(ex.getMostSpecificCause().toString());
-//        System.out.println(ex.getMostSpecificCause().getMessage());
 //    }
 
     @ExceptionHandler(BindException.class)
     public @ResponseBody
-    ResponseEntity<String> handleEverything(BindException e) {
+    ResponseEntity<String> handleBindingException(BindException e) {
         return this.handleArgumentError(e.getBindingResult().getFieldErrors());
     }
 
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public @ResponseBody
+    ResponseEntity<String> handleJsonParseError(HttpMessageNotReadableException e) {
+        String rawErrorMessage = e.getCause().toString();
+        String field = rawErrorMessage.substring(rawErrorMessage.indexOf("[\"") + 1, rawErrorMessage.indexOf("\"]") + 1);
+        if (field.length() == 0) {
+            return new ResponseEntity<>("You fucked up your JSON pretty badly, check your parameters.", HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>("Something wrong with input value. The field " + field + " is not correctly formatted.", HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+    }
         @ExceptionHandler(MethodArgumentNotValidException.class)
     public @ResponseBody ResponseEntity<String> handleInvalidArgumentException(MethodArgumentNotValidException e) {
         return this.handleArgumentError(e.getBindingResult().getFieldErrors());
@@ -78,6 +89,7 @@ public abstract class BaseController{
         System.out.println("==============================================");
         System.out.println("==============================================");
         System.out.println("UNKNOWN ERROR: What the fuck happened ?");
+        System.out.println("You probably forgot to link your error in linkedErrorsMessages.");
         System.out.println(ex.toString());
         System.out.println(ex.getMessage());
         System.out.println(ex.getMostSpecificCause().toString());
