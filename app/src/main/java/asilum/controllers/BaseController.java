@@ -44,6 +44,9 @@ public abstract class BaseController{
 //        System.out.println("===================================================================");
 //        System.out.println(e);
 //        System.out.println(e.getMessage());
+//        DataIntegrityViolationException ex = (DataIntegrityViolationException)e;
+//        System.out.println(ex.getMostSpecificCause().toString());
+//        System.out.println(ex.getMostSpecificCause().getMessage());
 //    }
 
     @ExceptionHandler(BindException.class)
@@ -60,7 +63,7 @@ public abstract class BaseController{
     @ResponseBody
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> handleUserException() {
-        return new ResponseEntity<>("Login or password incorrect", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("User cannot be found for given values.", HttpStatus.NOT_FOUND);
     }
 
     @ResponseBody

@@ -29,9 +29,17 @@ public class Message {
     @Valid
     private User sender;
 
-    public Message(@NotNull String text/*, @Validated @NotNull User sender*/) {
+
+    @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+    @JoinColumn(name="recipient_id", nullable = false)
+    @Valid
+    private User recipient;
+
+
+    public Message(@NotNull String text, @Validated @NotNull User sender , @Validated @NotNull User recipient) {
         this.text = text;
-//        this.sender = sender;
+        this.sender = sender;
+        this.recipient = recipient;
     }
     public Message() {
 
@@ -56,4 +64,19 @@ public class Message {
     public Integer getId() {
         return id;
     }
+
+    public User getRecipient() {
+        return recipient;
+    }
+
+    public void setRecipient(User recipient) {
+        this.recipient = recipient;
+    }
+
+    public String toString(){
+        return "id : " + this.id + "\n" +
+                "message : " + this.text + "\n" +
+                "sender : " + this.sender + "\n";
+    }
+
 }
