@@ -1,24 +1,26 @@
 package asilum.controllers;
 
 import asilum.DTO.MessageDTO;
-import asilum.exceptions.InvalidParameterException;
+import asilum.DTO.UserDTO;
 import asilum.exceptions.UserNotFoundException;
 import asilum.models.message.Message;
+import asilum.models.user.User;
+import asilum.models.user.Username;
 import asilum.repositories.MessageRepository;
 import asilum.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class MessagesController extends BaseController {
     @Autowired
     private MessageRepository messageRepository;
-    @Autowired // This means to get the bean called userRepository
+    @Autowired
     private UserRepository userRepository;
 
     @PostMapping(path = "/messages")
@@ -31,6 +33,13 @@ public class MessagesController extends BaseController {
                 userRepository.findById(rawMessage.getRecipientId()).orElseThrow(UserNotFoundException::new)
         );
         return new MessageDTO(messageRepository.save(message));
+    }
+
+    @GetMapping(path="/messages")
+    public @ResponseBody
+    List<Message> getUser(@RequestParam int userId) {
+        return messageRepository.findBySenderId(userId);
+
     }
 }
 

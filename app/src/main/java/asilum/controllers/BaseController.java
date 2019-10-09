@@ -1,6 +1,5 @@
 package asilum.controllers;
 
-import asilum.exceptions.InvalidParameterException;
 import asilum.exceptions.UserNotFoundException;
 import asilum.locales.ErrorMessages;
 import asilum.models.database.ConstraintNames;
