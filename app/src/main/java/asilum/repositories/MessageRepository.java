@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface MessageRepository extends CrudRepository<Message, Integer> {
     List<Message> findBySenderId(Integer id);
+    List<Message> findByRecipientId(Integer id);
 }

@@ -2,6 +2,7 @@ package asilum.controllers;
 
 import asilum.DTO.MessageDTO;
 import asilum.DTO.UserDTO;
+import asilum.exceptions.MessageNotFoundException;
 import asilum.exceptions.UserNotFoundException;
 import asilum.models.message.Message;
 import asilum.models.user.User;
@@ -35,10 +36,10 @@ public class MessagesController extends BaseController {
         return new MessageDTO(messageRepository.save(message));
     }
 
-    @GetMapping(path="/messages")
+    @GetMapping(path="/messages/{messageId}")
     public @ResponseBody
-    List<Message> getUser(@RequestParam int userId) {
-        return messageRepository.findBySenderId(userId);
+    MessageDTO getUser(@PathVariable(value="messageId") Integer messageId) throws MessageNotFoundException {
+        return new MessageDTO(messageRepository.findById(messageId).orElseThrow(MessageNotFoundException::new));
 
     }
 }

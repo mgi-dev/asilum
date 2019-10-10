@@ -1,5 +1,6 @@
 package asilum.controllers;
 
+import asilum.exceptions.MessageNotFoundException;
 import asilum.exceptions.UserNotFoundException;
 import asilum.locales.ErrorMessages;
 import asilum.models.database.ConstraintNames;
@@ -68,6 +69,12 @@ public abstract class BaseController{
         @ExceptionHandler(MethodArgumentNotValidException.class)
     public @ResponseBody ResponseEntity<String> handleInvalidArgumentException(MethodArgumentNotValidException e) {
         return this.handleArgumentError(e.getBindingResult().getFieldErrors());
+    }
+
+    @ResponseBody
+    @ExceptionHandler(MessageNotFoundException.class)
+    public ResponseEntity<String> handleMessageException() {
+        return new ResponseEntity<>("Message cannot be found for given id.", HttpStatus.NOT_FOUND);
     }
 
     @ResponseBody
