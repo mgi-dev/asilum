@@ -1,6 +1,7 @@
 package asilum.repositories;
 
 import asilum.models.message.Message;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

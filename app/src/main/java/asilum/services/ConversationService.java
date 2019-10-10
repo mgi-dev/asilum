@@ -15,11 +15,8 @@ public class ConversationService {
     private MessageRepository messageRepository;
 
     public List<Conversation> getConversations(int userId) {
-        System.out.println("=====================1=========");
-        System.out.println(userId);
         List<Message> sentMessages = messageRepository.findBySenderId(userId);
         List<Message> receivedMessages = messageRepository.findByRecipientId(userId);
-        System.out.println("=====================2=========");
         List<Conversation> conversations = new ArrayList<>();
 
         for (Message message : sentMessages) {
@@ -37,7 +34,6 @@ public class ConversationService {
                 conversations.get(conversations.size() - 1).addMessage(message);
             }
         }
-        System.out.println("=====================3=========");
         for (Message message : receivedMessages) {
             boolean ordered = false;
             for (Conversation conversation : conversations) {
@@ -47,7 +43,6 @@ public class ConversationService {
                     break;
                 }
             }
-            System.out.println("=================zjgfzhgf=========");
             if (!ordered) {
                 conversations.add(new Conversation());
                 conversations.get(conversations.size() - 1).addMessage(message);

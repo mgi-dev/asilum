@@ -9,6 +9,7 @@ import asilum.models.user.User;
 import asilum.models.user.Username;
 import asilum.repositories.MessageRepository;
 import asilum.repositories.UserRepository;
+import asilum.services.ConversationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
