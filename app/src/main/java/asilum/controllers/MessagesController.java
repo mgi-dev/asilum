@@ -24,6 +24,7 @@ public class MessagesController extends BaseController {
     @Autowired
     private UserRepository userRepository;
 
+    @CrossOrigin
     @PostMapping(path = "/messages")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
@@ -36,11 +37,11 @@ public class MessagesController extends BaseController {
         return new MessageDTO(messageRepository.save(message));
     }
 
+    @CrossOrigin
     @GetMapping(path="/messages/{messageId}")
     public @ResponseBody
     MessageDTO getUser(@PathVariable(value="messageId") Integer messageId) throws MessageNotFoundException {
         return new MessageDTO(messageRepository.findById(messageId).orElseThrow(MessageNotFoundException::new));
-
     }
 }
 

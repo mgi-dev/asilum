@@ -1,8 +1,11 @@
 package asilum.controllers;
 
 import asilum.DTO.Conversation;
+import asilum.DTO.ConversationDTO;
 import asilum.services.ConversationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,11 +16,17 @@ import java.util.List;
 @Controller
 public class ConversationController {
 
+    @Autowired
+    private ConversationService conversationService;
+
+    @CrossOrigin
     @GetMapping(path = "/conversations")
     public @ResponseBody
-    List<Conversation> getConversation (@RequestParam Integer userId){
-        ConversationService service = new ConversationService();
-        return service.getConversations(userId);
+    List<ConversationDTO> getConversation (@RequestParam Integer userId){
+        List<ConversationDTO> conversations = new ArrayList<ConversationDTO>();
+        for (Conversation conversation : conversationService.getConversations(userId)){
+            conversations.add(new ConversationDTO(conversation));
+        }
+        return conversations;
     }
-
 }
