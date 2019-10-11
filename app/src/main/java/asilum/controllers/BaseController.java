@@ -5,6 +5,7 @@ import asilum.exceptions.UserNotFoundException;
 import asilum.locales.ErrorMessages;
 import asilum.models.database.ConstraintNames;
 import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +16,15 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public abstract class BaseController{
+
 
     private Map<String, ErrorMessages> linkedErrorMessages = new HashMap<String, ErrorMessages>(){{
         put(ConstraintNames.UNIQUE_USERNAME_CONSTRAINT, ErrorMessages.USER_ALREADY_EXISTING);
@@ -36,18 +39,18 @@ public abstract class BaseController{
         return new ResponseEntity<>(builder.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
-//    @ExceptionHandler(Exception.class)
-//    public @ResponseBody
-//    void handleEverything(Exception e) {
-//        System.out.println("===================================================================");
-//        System.out.println("===================================================================");
-//        System.out.println("===================================================================");
-//        System.out.println("===================================================================");
-//        System.out.println("===================================================================");
-//        System.out.println(e);
-//        System.out.println(e.toString());
-//        System.out.println(e.getMessage());
-//    }
+    @ExceptionHandler(Exception.class)
+    public @ResponseBody
+    void handleEverything(Exception e) {
+        System.out.println("===================================================================");
+        System.out.println("===================================================================");
+        System.out.println("===================================================================");
+        System.out.println("===================================================================");
+        System.out.println("===================================================================");
+        System.out.println(e);
+        System.out.println(e.toString());
+        System.out.println(e.getMessage());
+    }
 
     @ExceptionHandler(BindException.class)
     public @ResponseBody

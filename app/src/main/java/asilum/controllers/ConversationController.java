@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class ConversationController {
 
-    @GetMapping(path = "/conversation")
+    @GetMapping(path = "/conversations")
     public @ResponseBody
     List<Conversation> getConversation (@RequestParam Integer userId){
         ConversationService service = new ConversationService();

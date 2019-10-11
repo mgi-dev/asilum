@@ -19,6 +19,7 @@ public class UserController extends BaseController {
     @Autowired // This means to get the bean called userRepository
     private UserRepository userRepository;
 
+    @CrossOrigin
     @PostMapping(path="/users")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody User addUsers(@RequestBody @Validated User user){
@@ -26,6 +27,7 @@ public class UserController extends BaseController {
         return userRepository.save(user);
     }
 
+    @CrossOrigin
     @GetMapping(path="/users")
     public @ResponseBody
     UserDTO getUser(@Validated Username username, @Validated String password) throws UserNotFoundException {
@@ -37,7 +39,7 @@ public class UserController extends BaseController {
         }
     }
 
-
+    @CrossOrigin
     @GetMapping(path="/users/count")
     public @ResponseBody
     UsersCount getUserCount() {
