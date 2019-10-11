@@ -2,7 +2,6 @@ package asilum.models.message;
 
 import asilum.models.user.User;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
@@ -38,7 +37,7 @@ public class Message {
     private User recipient;
 
     @CreationTimestamp
-    private Date created_at;
+    private Date createdAt;
 
     public Message(@NotNull String text, @Validated @NotNull User sender , @Validated @NotNull User recipient) {
         this.text = text;
@@ -83,7 +82,7 @@ public class Message {
                 "sender : " + this.sender + "\n";
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 }

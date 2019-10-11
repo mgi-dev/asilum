@@ -28,7 +28,7 @@ public class MessageDTO {
         this.senderId = message.getSender().getId();
         this.recipientId = message.getRecipient().getId();
         this.text = message.getText();
-        this.datetime = message.getCreated_at();
+        this.datetime = message.getCreatedAt();
     }
 
 

@@ -54,7 +54,7 @@ public class ConversationService {
         for (Conversation conversation : conversations){
             Collections.sort(conversation.getMessages(), new Comparator<Message>() {
                 public int compare(Message o1, Message o2) {
-                    return o1.getCreated_at().compareTo(o2.getCreated_at());
+                    return o1.getCreatedAt().compareTo(o2.getCreatedAt());
                 }
             });
         }
