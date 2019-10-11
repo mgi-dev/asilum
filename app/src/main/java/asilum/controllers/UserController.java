@@ -22,9 +22,10 @@ public class UserController extends BaseController {
     @CrossOrigin
     @PostMapping(path="/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody User addUsers(@RequestBody @Validated User user){
+    public @ResponseBody
+    UserDTO addUsers(@RequestBody @Validated User user){
         user.hashPassword();
-        return userRepository.save(user);
+        return new UserDTO(userRepository.save(user));
     }
 
     @CrossOrigin

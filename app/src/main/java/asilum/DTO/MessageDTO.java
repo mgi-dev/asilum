@@ -4,6 +4,7 @@ import asilum.models.message.Message;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 public class MessageDTO {
 
@@ -15,6 +16,8 @@ public class MessageDTO {
     @Size(min=1, max=255, message="Invalid length.")
     private String text;
 
+    private Date datetime;
+
     public MessageDTO(Integer senderId, Integer recipientId, String text) {
         this.senderId = senderId;
         this.recipientId = recipientId;
@@ -25,6 +28,7 @@ public class MessageDTO {
         this.senderId = message.getSender().getId();
         this.recipientId = message.getRecipient().getId();
         this.text = message.getText();
+        this.datetime = message.getCreated_at();
     }
 
 
@@ -50,5 +54,9 @@ public class MessageDTO {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Date getDatetime() {
+        return datetime;
     }
 }

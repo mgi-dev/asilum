@@ -4,26 +4,25 @@ import asilum.models.user.User;
 
 public class UserDTO {
     private String username;
-//    private String password;
+    private String photoUri;
+    private int id;
 
     public UserDTO(User user) {
+        this.id = user.getId();
         this.username = user.getUsername().getUsername();
-//        this.password = user.getPassword().getPassword();
+        this.photoUri = user.getPhotoUri();
     }
 
     public String getUsername() {
         return username;
     }
 
-//    public String getPassword() {
-//        return password;
-//    }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
+    public String getPhotoUri() {
+        return photoUri;
+    }
 }

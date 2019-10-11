@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -48,6 +50,13 @@ public class ConversationService {
                 conversations.add(new Conversation());
                 conversations.get(conversations.size() - 1).addMessage(message);
             }
+        }
+        for (Conversation conversation : conversations){
+            Collections.sort(conversation.getMessages(), new Comparator<Message>() {
+                public int compare(Message o1, Message o2) {
+                    return o1.getCreated_at().compareTo(o2.getCreated_at());
+                }
+            });
         }
         return conversations;
     }

@@ -2,6 +2,7 @@ package asilum.models.user;
 
 import asilum.models.database.ConstraintNames;
 import asilum.models.message.Message;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -32,15 +33,21 @@ public class User {
     @Valid
     private Password password;
 
-    public User() {}
+    @Nullable
+    private String photoUri;
 
 
-    public User(String username, String password) {
+    public User() {
+    }
+
+    public User(String username, String password, String photoUri) {
+        this.photoUri = photoUri;
         this.setUsername(username);
         this.setPassword(password);
     }
 
-    public User(Username username, Password password) {
+    public User(Username username, Password password, String photoUri) {
+        this.photoUri = photoUri;
         this.setUsername(username);
         this.setPassword(password);
     }
@@ -76,7 +83,16 @@ public class User {
     public void setPassword(String password){
         this.password = new Password(password);
     }
+
     public void hashPassword(){
         this.password.selfHash();
+    }
+
+    public String getPhotoUri() {
+        return photoUri;
+    }
+
+    public void setPhotoUri(String photoUri) {
+        this.photoUri = photoUri;
     }
 }

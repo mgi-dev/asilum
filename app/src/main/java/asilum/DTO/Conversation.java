@@ -31,6 +31,10 @@ public class Conversation {
         this.messages.add(message);
     }
 
+    public void setMessages(List<Message> messages){
+        this.messages = messages;
+    }
+
     public List<Message> getMessages(){
         return this.messages;
     }
