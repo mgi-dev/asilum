@@ -25,7 +25,6 @@ public abstract class BaseController{
         put(ConstraintNames.UNIQUE_USERNAME_CONSTRAINT, ErrorMessages.USER_ALREADY_EXISTING);
     }};
 
-
     private ResponseEntity<String> handleArgumentError(List<FieldError> errors){
         StringBuilder builder = new StringBuilder();
         for (FieldError error : errors ) {

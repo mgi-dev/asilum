@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class ConversationController {
+public class ConversationController extends BaseController {
 
     @Autowired
     private ConversationService conversationService;
 
     @CrossOrigin
-    @GetMapping(path = "/conversations")
+    @GetMapping(path="/conversations")
     public @ResponseBody
     List<ConversationDTO> getConversation (@RequestParam Integer userId){
         List<ConversationDTO> conversations = new ArrayList<ConversationDTO>();
