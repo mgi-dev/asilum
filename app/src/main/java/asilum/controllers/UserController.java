@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Controller
 public class UserController extends BaseController {
@@ -39,6 +42,17 @@ public class UserController extends BaseController {
             throw new UserNotFoundException();
         }
     }
+
+    @CrossOrigin
+    @GetMapping(path="/users/list")
+    public @ResponseBody
+    List<UserDTO> getAllUser() {
+        List<UserDTO> users = new ArrayList<>();
+        userRepository.findAll().forEach(user -> users.add(new UserDTO(user)));
+        return users;
+    }
+
+
 
     @CrossOrigin
     @GetMapping(path="/users/count")
