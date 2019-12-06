@@ -36,20 +36,40 @@ public class User {
     @Nullable
     private String photoUri;
 
+    @Nullable
+    private String gender;
+
+    @Nullable
+    private Integer age;
+
+    @Nullable
+    private String country;
+
+    @Nullable
+    private String city;
+
 
     public User() {
     }
 
-    public User(String username, String password, String photoUri) {
+    public User(String username, String password, String photoUri, String gender, Integer age, String country, String city) {
         this.photoUri = photoUri;
         this.setUsername(username);
         this.setPassword(password);
+        this.setGender(gender);
+        this.setAge(age);
+        this.setCountry(country);
+        this.setCity(city);
     }
 
-    public User(Username username, Password password, String photoUri) {
+    public User(Username username, Password password, String photoUri, String gender, Integer age, String country, String city) {
         this.photoUri = photoUri;
         this.setUsername(username);
         this.setPassword(password);
+        this.setGender(gender);
+        this.setAge(age);
+        this.setCountry(country);
+        this.setCity(city);
     }
 
     public Integer getId() {
@@ -94,5 +114,57 @@ public class User {
 
     public void setPhotoUri(String photoUri) {
         this.photoUri = photoUri;
+    }
+
+    public Set<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
+    }
+
+    public void setUsername(asilum.models.user.Username username) {
+        this.username = username;
+    }
+
+    public void setPassword(asilum.models.user.Password password) {
+        this.password = password;
+    }
+
+    @Nullable
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(@Nullable String gender) {
+        this.gender = gender;
+    }
+
+    @Nullable
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(@Nullable Integer age) {
+        this.age = age;
+    }
+
+    @Nullable
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(@Nullable String country) {
+        this.country = country;
+    }
+
+    @Nullable
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(@Nullable String city) {
+        this.city = city;
     }
 }
