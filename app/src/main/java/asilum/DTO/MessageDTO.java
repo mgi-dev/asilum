@@ -16,21 +16,27 @@ public class MessageDTO {
     @Size(min=1, max=255, message="Invalid length.")
     private String text;
 
+    private String senderUsername;
+
+    private String recipientUsername;
+
     private Date datetime;
 
-    public MessageDTO(Integer senderId, Integer recipientId, String text) {
-        this.senderId = senderId;
-        this.recipientId = recipientId;
-        this.text = text;
-    }
+//    public MessageDTO(Integer senderId, Integer recipientId, String text) {
+//        this.senderId = senderId;
+//        this.recipientId = recipientId;
+//        this.text = text;
+//    }
 
     public MessageDTO(Message message) {
         this.senderId = message.getSender().getId();
         this.recipientId = message.getRecipient().getId();
         this.text = message.getText();
         this.datetime = message.getCreatedAt();
+
     }
 
+    public MessageDTO(){}
 
     public Integer getSenderId() {
         return senderId;
@@ -58,5 +64,21 @@ public class MessageDTO {
 
     public Date getDatetime() {
         return datetime;
+    }
+
+    public String getSenderUsername() {
+        return senderUsername;
+    }
+
+    public void setSenderUsername(String senderUsername) {
+        this.senderUsername = senderUsername;
+    }
+
+    public String getRecipientUsername() {
+        return recipientUsername;
+    }
+
+    public void setRecipientUsername(String recipientUsername) {
+        this.recipientUsername = recipientUsername;
     }
 }

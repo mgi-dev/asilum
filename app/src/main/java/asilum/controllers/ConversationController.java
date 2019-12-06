@@ -21,10 +21,6 @@ public class ConversationController extends BaseController {
     @GetMapping(path="/conversations")
     public @ResponseBody
     List<ConversationDTO> getConversation (@RequestParam Integer userId){
-        List<ConversationDTO> conversations = new ArrayList<ConversationDTO>();
-        for (Conversation conversation : conversationService.getConversations(userId)){
-            conversations.add(new ConversationDTO(conversation));
-        }
-        return conversations;
+        return conversationService.getConversations(userId);
     }
 }
